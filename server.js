@@ -1,10 +1,9 @@
 var express = require('express');
 var path = require('path');
 var methodovr = require('method-override');
-var bodyparser = require('body-parser');
+var bodyParser = require('body-parser');
 var exprhbs = require('express-handlebars');
 var mysql = require('mysql');
-
 
 var connection = mysql.createConnection({
     host     : '127.0.0.1',
@@ -34,12 +33,22 @@ app.set('view engine', 'hbs');
 //Set static route for javascript file
 app.use("/assets", express.static(path.join(__dirname, '/views/assets')));
 
-
+//use bodyParser middleware
+// Sets up the Express app to handle data parsing
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 app.get('/', function(req, res) {
   res.render('index', {title: "Eat Da Burger"});
 });
 
+app.post('/', function(req, res) {
+    var newBurger = req.body.newBurger;
+    console.log(newBurger);
+    res.render('index', {title: "Added the burger"});
+});
 
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
