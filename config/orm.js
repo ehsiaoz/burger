@@ -7,7 +7,9 @@ var orm = {
 		connection.query(queryString, function(err, result) {
 			console.log("orm error: "+err);
 			console.log("orm result: "+ JSON.stringify(result));
-			if (err); throw err;
+			if (err) {
+				console.log("doh!");
+			}
 			cb(result);
 		});
 	},

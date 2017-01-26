@@ -4,7 +4,7 @@ var burger = {
 
 	all: function(cb) {
 		orm.all('burgers', function(res) {
-			console.log(res);
+			console.log("result in burger: " +res);
 			cb(res);
 		});
 	},
