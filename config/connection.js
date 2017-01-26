@@ -5,7 +5,7 @@ var connection = mysql.createConnection({
     user     : 'root',
     password : 'root',
     database : 'burger_db',
-    port     : '3306'
+    port     : '3306',
 });
 
 //Establish connection to mySQL DB
@@ -16,5 +16,11 @@ connection.connect(function(err) {
   }
   console.log('DB connected as id ' + connection.threadId);
 });
+
+// connection.query('SHOW DATABASES;', function(error, results, fields){
+//   console.log("error: "+error);
+//   // console.log("results: "+JSON.parse(results));
+//   // console.log("fields: "+JSON.parse(fields));
+// });
 
 module.exports = connection;
