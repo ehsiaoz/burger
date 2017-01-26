@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>{{title}}</title>
-  </head>
-  <body>
-    {{{body}}}
-  </body>
-</html>
+
+<img src="./assets/burger.png">
+<h1>Eat Da Burger</h1>
+
+<ul>
+	{{#each burgers}}
+		{{#unless this.devoured}}
+			<li>
+				{{this.name}}
+
+				<form action='burgers/update/{{this.id}}?_method-PUT' method = "POST",
+					<input type="hidden" name="devour" value="true">
+					<button type="submit">Devour</button>
+				</form>
+			</li>
+		{{/unless}}
+	{{/each}}
+</ul>
