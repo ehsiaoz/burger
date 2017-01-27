@@ -4,18 +4,22 @@ var burger = {
 
 	all: function(cb) {
 		orm.all('burgers', function(res) {
-			console.log("result in burger: " +res);
 			cb(res);
 		});
 	},
 
 	create: function (cols, vals, cb) {
+		console.log("inside burger create");
+		console.log("cols: ", cols);
+		console.log("vals: ", vals);
 		orm.create('burgers', cols, vals, function (res) {
 			cb(res);
 		});
 	},
 
 	update: function (updatecol, updateval, condition, cb) {
+		console.log("inside burger");
+		console.log(updatecol, updateval, condition);
 		orm.update('burgers', updatecol, updateval, condition, function (res) {
 			cb(res);
 		});
@@ -23,4 +27,3 @@ var burger = {
 };
 
 module.exports = burger;
-

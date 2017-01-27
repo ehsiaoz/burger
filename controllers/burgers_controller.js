@@ -14,17 +14,25 @@ router.get('/burgers', function(req, res){
 	});
 });
 
-router.post('/burgers/create', function (req, res){
-	burger.create(['burger_name', 'devoured'], [req.body.burgerName, req.body.devoured], function() {
+router.post('/', function (req, res){
+	burger.create(
+		[
+			'burger_name', 'devoured'
+		],
+		[
+			'"' + req.body.burger_name + '"', req.body.devoured
+		], function() {
 		res.redirect('/burgers');
 	});
 });
 
-router.put('/burgers/update/:id', function (req, res){
-	var updatecol = 'devoured'
-	var condition = 'id = ' + res.params.id;
+router.put('/:id', function (req, res){
+	var condition = 'id = ' + req.params.id;
+	var updatecol = 'devoured';
+	var updateval = req.body.devoured;
 	console.log('condition: ', condition);
-	burger.update(updatecol, req.body.devoured, condition, function () {
+	burger.update(updatecol, updateval, condition, function () {
+		console.log("burgerupdated!");
 		res.redirect('/burgers');
 	});
 });
